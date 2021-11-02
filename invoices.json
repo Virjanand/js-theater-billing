@@ -12,7 +12,11 @@
             },
             {
                 "playID": "othello",
-                "audience": 40
+                "audience": 30
+            },
+            {
+                "playID": "as-like",
+                "audience": 20
             }
         ]
     }
