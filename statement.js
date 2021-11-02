@@ -6,8 +6,6 @@ function statement (invoice, plays) {
                             { style: "currency", currency: "USD",
                               minimumFractionDigits: 2 }).format;
     for (let perf of invoice.performances) {
-        thisAmount = amountFor(perf);
-        
         // add volume credits
         volumeCredits += Math.max(perf.audience - 30, 0);
         // add extra redit for every ten comedy attendees
