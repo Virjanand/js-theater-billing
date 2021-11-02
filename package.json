@@ -4,7 +4,7 @@
   "description": "Billing for plays performed for custom audiences",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "Virjanand Panday",
