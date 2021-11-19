@@ -1,7 +1,30 @@
 class performanceCalculator {
   constructor(aPerformance, aPlay) {
-    this.aPerformance = aPerformance
+    this.performance = aPerformance
     this.play = aPlay
+  }
+
+  get amount() {
+    let result = 0
+
+    switch (this.play.type) {
+      case 'tragedy':
+        result = 40000
+        if (this.performance.audience > 30) {
+          result += 1000 * (this.performance.audience - 30)
+        }
+        break
+      case 'comedy':
+        result = 30000
+        if (this.performance.audience > 20) {
+          result += 10000 + 500 * (this.performance.audience - 20)
+        }
+        result += 300 * this.performance.audience
+        break
+      default:
+        throw new Error(`unknown type: ${this.play.type}`)
+    }
+    return result
   }
 }
 
@@ -30,26 +53,7 @@ function createStatementData(invoice, plays) {
   }
 
   function amountFor(aPerformance) {
-    let result = 0
-
-    switch (aPerformance.play.type) {
-      case 'tragedy':
-        result = 40000
-        if (aPerformance.audience > 30) {
-          result += 1000 * (aPerformance.audience - 30)
-        }
-        break
-      case 'comedy':
-        result = 30000
-        if (aPerformance.audience > 20) {
-          result += 10000 + 500 * (aPerformance.audience - 20)
-        }
-        result += 300 * aPerformance.audience
-        break
-      default:
-        throw new Error(`unknown type: ${playFor(aPerformance).type}`)
-    }
-    return result
+    return new performanceCalculator(aPerformance, playFor(aPerformance)).amount
   }
 
   function volumeCreditsFor(aPerformance) {
